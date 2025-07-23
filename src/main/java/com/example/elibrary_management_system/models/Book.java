@@ -1,0 +1,45 @@
+package com.example.elibrary_management_system.models;
+
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.Date;
+import java.util.List;
+
+@Data
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String title;
+
+    @Enumerated(EnumType.STRING)
+    private Genre genre;
+
+    @ManyToOne
+    @JoinColumn
+    private Author author;
+
+    @ManyToOne
+    @JoinColumn
+    private Student student;
+
+    @OneToMany(mappedBy = "book")
+    private List<Transaction> transactions;
+
+    @CreationTimestamp
+    private Date createdOn;
+    @UpdateTimestamp
+    private Date updatedOn;
+}
