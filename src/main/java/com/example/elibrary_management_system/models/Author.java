@@ -1,5 +1,6 @@
 package com.example.elibrary_management_system.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
@@ -30,6 +31,7 @@ public class Author {
 
     //bidirectional mapping. can lead to cyclic dependency
     @OneToMany(mappedBy = "author")
+    @JsonIgnoreProperties("author")
     private List<Book> books;
 
 

@@ -1,5 +1,7 @@
 package com.example.elibrary_management_system.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -40,8 +42,11 @@ public class Student {
     private Date updatedOn;
 
     @OneToMany(mappedBy = "student")
+    //@JsonIgnoreProperties("student")
+    @JsonIgnore
     private List<Transaction> transactions;
 
     @OneToMany(mappedBy = "student")
+    @JsonIgnoreProperties("student")
     private List<Book> books;
 }

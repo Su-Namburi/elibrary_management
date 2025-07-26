@@ -1,5 +1,7 @@
 package com.example.elibrary_management_system.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,13 +31,17 @@ public class Book {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnoreProperties("books")
     private Author author;
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnoreProperties("books")
     private Student student;
 
     @OneToMany(mappedBy = "book")
+    //@JsonIgnoreProperties("book")
+    @JsonIgnore
     private List<Transaction> transactions;
 
     @CreationTimestamp
