@@ -159,7 +159,7 @@ public class TransactionService {
         return transaction.getExternalId();
     }
 
-    private int getFine(Book book, Student student) {
+    public int getFine(Book book, Student student) {
         //find the last transaction of the student and book and transaction type(issuance) and status(success)
         Transaction issuedTxn = this.transactionRepository.findTopByBookAndStudentAndTransactionTypeAndTransactionStatusOrderByIdDesc(
                 book,student,TransactionType.ISSUANCE,TransactionStatus.SUCCESS);
@@ -173,5 +173,8 @@ public class TransactionService {
             return (daysPassed.intValue() - this.maxDaysAllowed)*this.finePerDay;
         }
         return 0;
+    }
+    public int sumWithIncrement(int a, int b) {
+        return a + b + 1;
     }
 }
