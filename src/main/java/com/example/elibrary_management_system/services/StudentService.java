@@ -22,6 +22,12 @@ public class StudentService {
     private ObjectMapper mapper;
 
     public Long createStudent(Student student) {
+        /*
+        * 1. encode password
+        * 2. add authority
+        * 3. update/create user
+        * 4. link student and user
+        */
         return this.studentRepository.save(student).getId();
     }
 

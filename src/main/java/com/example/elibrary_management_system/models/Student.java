@@ -32,6 +32,11 @@ public class Student {
     private String mobile;
     private Integer age;
 
+    @OneToOne
+    @JoinColumn
+    @JsonIgnoreProperties("student")
+    private User user;
+
     @Enumerated(EnumType.STRING)
     private StudentStatus status;
 
