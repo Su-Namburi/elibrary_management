@@ -29,6 +29,7 @@ public class Book {
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
+    //jpa mapping
     @ManyToOne
     @JoinColumn
     @JsonIgnoreProperties("books")

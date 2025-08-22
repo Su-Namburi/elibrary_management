@@ -30,11 +30,11 @@ public class User implements UserDetails {
     private Authority authorities;
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> grantedAutorities = new ArrayList<>();
-        grantedAutorities.add(new SimpleGrantedAuthority(Authority.STUDENT.name()));
-        grantedAutorities.add(new SimpleGrantedAuthority(Authority.ADMIN.name()));
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        grantedAuthorities.add(new SimpleGrantedAuthority(authorities.name()));
+        //grantedAuthorities.add(new SimpleGrantedAuthority(Authority.ADMIN.name()));
 
-        return grantedAutorities;
+        return grantedAuthorities;
     }
 
     @OneToOne(mappedBy = "user")

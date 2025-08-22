@@ -4,6 +4,7 @@ import com.example.elibrary_management_system.models.Author;
 import com.example.elibrary_management_system.models.Book;
 import com.example.elibrary_management_system.models.Genre;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Data
@@ -15,13 +16,14 @@ import lombok.*;
 @Builder
 public class CreateBookRequest {
 
-    //from Book
+    @NotBlank//from Book
     private String title;
     private Genre genre;
     //from Student
     private String authorName;
 
     @Email
+    @NotBlank
     private String authorEmail;
 
     public Book toBook() {
