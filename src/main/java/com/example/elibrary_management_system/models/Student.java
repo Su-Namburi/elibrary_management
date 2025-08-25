@@ -34,7 +34,7 @@ public class Student {
 
     @OneToOne
     @JoinColumn
-    @JsonIgnoreProperties("student ")
+    @JsonIgnoreProperties("student")
     private User user;
 
     @Enumerated(EnumType.STRING)

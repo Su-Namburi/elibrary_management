@@ -33,6 +33,7 @@ public class User implements UserDetails {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         grantedAuthorities.add(new SimpleGrantedAuthority(authorities.name()));
         //grantedAuthorities.add(new SimpleGrantedAuthority(Authority.ADMIN.name()));
+        System.out.println("Returning authorities: " + grantedAuthorities);
 
         return grantedAuthorities;
     }

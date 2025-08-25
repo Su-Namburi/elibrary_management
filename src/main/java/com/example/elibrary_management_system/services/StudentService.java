@@ -2,8 +2,10 @@ package com.example.elibrary_management_system.services;
 
 
 import com.example.elibrary_management_system.dtos.GetStudentResponse;
+import com.example.elibrary_management_system.models.Authority;
 import com.example.elibrary_management_system.models.Student;
 import com.example.elibrary_management_system.models.StudentStatus;
+import com.example.elibrary_management_system.models.User;
 import com.example.elibrary_management_system.repositories.StudentRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +23,28 @@ public class StudentService {
     @Autowired
     private ObjectMapper mapper;
 
+    @Autowired
+    UserService userService;
+
+    /*
+     * 1. encode password
+     * 2. add authority
+     * 3. update/create user
+     * 4. link student and user
+     * 5. save student and return id
+     */
     public Long createStudent(Student student) {
-        /*
-        * 1. encode password
-        * 2. add authority
-        * 3. update/create user
-        * 4. link student and user
-        */
+
+        User user = this.userService.createUser(student.getUser(), Authority.STUDENT);
+        student.setUser(user);
+
         return this.studentRepository.save(student).getId();
+
+        //return this.studentRepository.save(student).getId();
     }
 
     public GetStudentResponse getStudent(Long id) {
+
         Student student = this.studentRepository.findById(id).orElse(null);
         return GetStudentResponse.builder().student(student).build();
     }

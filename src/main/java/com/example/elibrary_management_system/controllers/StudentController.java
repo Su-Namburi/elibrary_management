@@ -25,6 +25,7 @@ public class StudentController {
 
     @GetMapping("/admin/get")
     public GetStudentResponse getStudentByAdmin(@RequestParam("id") Long id) {
+
         return this.studentService.getStudent(id);
     }
 
